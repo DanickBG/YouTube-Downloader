@@ -1,5 +1,11 @@
 import yt_dlp
 
+def longer_than_a_minute(info, *, incomplete):
+    """Download only videos longer than a minute (or with unknown duration)"""
+    duration = info.get('duration')
+    if duration and duration < 7000:
+        return 'The video is too short'
+
 ydl_opts = {
     'cookiefile': 'cookies.txt',  
     'format': 'bestaudio/best',
@@ -10,7 +16,8 @@ ydl_opts = {
         'preferredquality': '256', 
     }],
     'noplaylist': False,  
-    'playlist_items': '1-100',  
+    'playlist_items': '100-110',  
+    'match_filter': longer_than_a_minute,
 }
 
 playlist_url = 'https://www.youtube.com/playlist?list=LL'
