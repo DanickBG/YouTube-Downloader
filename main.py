@@ -3,7 +3,7 @@ import yt_dlp
 def longer_than_a_minute(info, *, incomplete):
     """Download only videos longer than a minute (or with unknown duration)"""
     duration = info.get('duration')
-    if duration and duration < 7000:
+    if duration and duration < 80:
         return 'The video is too short'
 
 ydl_opts = {
@@ -16,7 +16,7 @@ ydl_opts = {
         'preferredquality': '256', 
     }],
     'noplaylist': False,  
-    'playlist_items': '100-110',  
+    'playlist_items': '101-150',  
     'match_filter': longer_than_a_minute,
 }
 
